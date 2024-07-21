@@ -1,0 +1,49 @@
+body {
+  color: #323232;
+  display: flex;
+  flex-direction: column;
+  font-family: monospace;
+  letter-spacing: 1px;
+  padding: 20px 60px 0;
+}
+
+html {
+  background: aliceblue;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+footer {
+  color: blue;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-bottom: 30px;
+  font-weight: normal;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(27, 27, 27);
+}
+
+a:hover {
+  color: blue;
+}
+
+a:focus {
+  color: darkblue;
+}
+
+posts {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+}
