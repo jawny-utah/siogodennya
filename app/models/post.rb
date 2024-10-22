@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   validates :header, :description, :video_link, presence: true
+  alias_attribute :title, :header
 
   scope :active, -> { where(active: true) }
 
