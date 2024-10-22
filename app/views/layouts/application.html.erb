@@ -10,11 +10,9 @@
   </head>
 
   <body>
-    <%= link_to root_path, style: "margin-bottom: 15px;" do %>
-      <h1>Сьогодення</h1>
-    <% end %>
+    <%= render partial: "layouts/header" %>
     <div style="display: flex;">
-      <%= render template: "pages/posts" %>
+      <%= render template: "pages/sidebar_resources" %>
       <%= yield %>
     </div>
     <%= render partial: "layouts/footer" %>
