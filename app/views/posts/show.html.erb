@@ -1,5 +1,7 @@
 <post>
   <h2 style="margin-bottom: 15px"> <%= @post.header %> </h2>
-  <%= video_tag "Реклама ЗАЗ Таврія в Unreal Engine 5 (1).mp4", controls: true, style: "max-width: 620px;" %>
+  <iframe src="https://player.vimeo.com/video/<%= @post.video_link %>"
+          width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+  </iframe>
   <p> <%= @post.description %> </p>
 </post>
