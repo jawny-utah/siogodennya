@@ -52,6 +52,7 @@ posts {
   flex-direction: column;
   margin-right: 30px;
   max-width: 200px;
+  gap: 12px;
 }
 
 product {
@@ -76,4 +77,8 @@ button {
 
 button:hover {
   background: #86cce3;
+}
+
+a.active {
+  color: blue;
 }
