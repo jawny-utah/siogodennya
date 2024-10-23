@@ -1,3 +1,5 @@
+@import url("inputs.css");
+
 body {
   color: #323232;
   display: flex;
@@ -70,24 +72,27 @@ product img {
   height: fit-content;
 }
 
-button {
-  background: #add8e6;
-  border-radius: 8px;
-  border: 0;
-  padding: 6px 16px;
-  cursor: pointer;
-  transition: .3s;
-  font-weight: 600;
-  font-size: 16px;
+.buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
-button:hover {
-  background: #86cce3;
+.buttons-wrapper * {
+  width: 48%;
 }
 
 a.active {
   color: blue;
 }
+
+.mt-4 {
+  margin-top: 16px;
+}
+
+.mb-4 {
+  margin-bottom: 16px;
+}
+
 
 post {
   max-width: 720px;
@@ -98,6 +103,17 @@ header {
   display: flex;
   align-items: baseline;
   gap: 50px;
+}
+
+dialog {
+  padding: 12px 24px;
+  border: 0;
+  background-color: beige;
+}
+
+dialog::backdrop {
+  background-color: rgba(119, 119, 119, 0.5);
+  backdrop-filter: blur(2px);
 }
 
 @media (max-width: 500px) {

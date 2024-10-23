@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.3"
 
 gem "activeadmin"
+gem "aws-sdk-s3"
 gem "bootsnap", require: false
 gem "jbuilder"
 gem "pg", "~> 1.1"
@@ -16,6 +17,7 @@ gem "sassc-rails"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "dotenv"
 end
 
 group :development do

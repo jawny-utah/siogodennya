@@ -1,0 +1,46 @@
+button, input[type="submit"] {
+  background: #add8e6;
+  border-radius: 8px;
+  border: 0;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: .3s;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+button:hover, input[type="submit"]:hover {
+  background: #86cce3;
+}
+
+.cancel-button {
+  background: rgb(255, 85, 85);
+}
+
+.cancel-button:hover {
+  background-color: rgb(205, 59, 59);
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.input-wrapper label{
+  margin-bottom: 3px;
+}
+
+textarea {
+  resize: vertical;
+  max-height: 300px;
+}
+
+close-icon {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 15px;
+}
