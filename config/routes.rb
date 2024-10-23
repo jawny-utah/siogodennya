@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   root "pages#index"
   resources :posts, only: :show
   resources :products
+  resources :purchases, only: :create
 end

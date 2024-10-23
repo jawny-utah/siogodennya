@@ -9,6 +9,41 @@
       <h4> Ціна: </h4>
       <%= format_price(@product.price) %>
     </div>
-    <button style="margin-top: 20px"> Замовити </button>
+    <button style="margin-top: 20px" onclick='document.getElementById("dialog").showModal()'> Замовити </button>
   </div>
+  <dialog id="dialog">
+    <h2 class="mb-4"> Форма оплати замовлення </h2>
+    <%= form_with model: @purchase, url: purchases_path, method: :post, html: { style: "display: flex; flex-direction: column;" } do |f| %>
+      <%= f.hidden_field :product_id, value: @product.id %>
+      <div class="input-wrapper">
+        <%= f.label "Повне ім'я", for: :full_name %>
+        <%= f.text_field :full_name, required: true %>
+      </div>
+      <div class="input-wrapper">
+        <%= f.label "Номер телефону", for: :phone_number %>
+        <%= f.text_field :phone_number, placeholder: "+380999999990", required: true %>
+      </div>
+      <div class="input-wrapper">
+        <%= f.label "Місто", for: :city %>
+        <%= f.text_field :city, required: true %>
+      </div>
+      <div class="input-wrapper">
+        <%= f.label "Номер відділення Нової Пошти", for: :np_post_office %>
+        <%= f.text_field :np_post_office, required: true %>
+      </div>
+      <div class="input-wrapper">
+        <%= f.label "Коментар", for: :comment %>
+        <%= f.text_area :comment %>
+      </div>
+      <div class="input-wrapper">
+        <%= f.label "Фото квитанції", for: :check %>
+        <%= f.file_field :check, required: true %>
+      </div>
+      <div class="buttons-wrapper mt-4">
+        <button class="cancel-button" onclick='document.getElementById("dialog").close()'> Скасувати </button>
+        <%= f.submit "Підтердити" %>
+      </div>
+    <% end %>
+    <close-icon onclick='document.getElementById("dialog").close()'>x</close-icon>
+  </dialog>
 </product>

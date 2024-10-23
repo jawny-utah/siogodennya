@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   alias_attribute :header, :title
+  has_many :purchases, dependent: :destroy
 
   scope :active, -> { where(active: true) }
 
