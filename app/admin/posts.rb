@@ -5,7 +5,7 @@ ActiveAdmin.register Post do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :header, :description, :video_link, :active
+  permit_params :header, :description, :video_link, :active
   #
   # or
   #

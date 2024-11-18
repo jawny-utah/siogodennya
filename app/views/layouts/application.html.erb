@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= favicon_link_tag asset_path("favicon.png") %>
 
     <%= stylesheet_link_tag "application" %>
   </head>
 
   <body>
     <%= render partial: "layouts/header" %>
-    <div style="display: flex; height: 100%;">
+    <container>
       <%= render template: "pages/sidebar_resources" %>
       <%= yield %>
-    </div>
+    </container>
     <%= render partial: "layouts/footer" %>
   </body>
 </html>
