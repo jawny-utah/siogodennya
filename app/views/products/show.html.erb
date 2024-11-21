@@ -1,22 +1,26 @@
 <% content_for(:title, @product.title) %>
 
-<product>
-  <%= image_tag @product.image_url %>
-  <div>
-    <h2> <%= @product.title %> </h2>
-    <p> <%= @product.description %> </p>
+<div>
+  <product>
+    <%= image_tag @product.image_url %>
     <div>
-      <h4> Ціна: </h4>
-      <%= format_price(@product.price) %>
+      <h2> <%= @product.title %> </h2>
+      <p> <%= @product.description %> </p>
+      <div>
+        <h4> Ціна: </h4>
+        <%= format_price(@product.price) %>
+      </div>
+      <%# <%= render partial: "products/how_to_purchase" %>
+      <button style="margin-top: 20px" onclick='document.getElementById("dialog").showModal()'> Замовити </button>
     </div>
-    <button style="margin-top: 20px" onclick='document.getElementById("dialog").showModal()'> Замовити </button>
-  </div>
+  </product>
+  <%= render partial: "products/faq" %>
   <dialog id="dialog">
     <h2 class="mb-4"> Форма оплати замовлення </h2>
     <%= form_with model: @purchase, url: purchases_path, method: :post, html: { style: "display: flex; flex-direction: column;" } do |f| %>
       <%= f.hidden_field :product_id, value: @product.id %>
       <div class="input-wrapper">
-        <%= f.label "Повне ім'я", for: :full_name %>
+        <%= f.label "Ім'я та прізвище", for: :full_name %>
         <%= f.text_field :full_name, required: true %>
       </div>
       <div class="input-wrapper">
@@ -27,18 +31,20 @@
         <%= f.label "Місто", for: :city %>
         <%= f.text_field :city, required: true %>
       </div>
+      <p style="margin-bottom: 0"> Відправляю післяплатою. </p>
+      <p> Доставка безкоштовна. </p>
       <div class="input-wrapper">
         <%= f.label "Номер відділення Нової Пошти", for: :np_post_office %>
         <%= f.text_field :np_post_office, required: true %>
       </div>
       <div class="input-wrapper">
-        <%= f.label "Коментар", for: :comment %>
+        <%= f.label "Коментар, уточнення або побажання", for: :comment %>
         <%= f.text_area :comment %>
       </div>
-      <div class="input-wrapper">
-        <%= f.label "Фото квитанції", for: :check %>
-        <%= f.file_field :check, required: true %>
-      </div>
+      <%# <div class="input-wrapper">
+        <%# <%= f.label "Фото квитанції", for: :check %>
+        <%# <%= f.file_field :check, required: true %>
+      <%# </div> %>
       <div class="buttons-wrapper mt-4">
         <button class="cancel-button" onclick='document.getElementById("dialog").close()'> Скасувати </button>
         <%= f.submit "Підтердити" %>
@@ -46,4 +52,4 @@
     <% end %>
     <close-icon onclick='document.getElementById("dialog").close()'>x</close-icon>
   </dialog>
-</product>
+</div>

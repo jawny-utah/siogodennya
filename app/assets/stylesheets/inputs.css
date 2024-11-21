@@ -1,4 +1,4 @@
-button, input[type="submit"] {
+button, input[type="submit"], .button {
   background: #add8e6;
   border-radius: 8px;
   border: 0;
