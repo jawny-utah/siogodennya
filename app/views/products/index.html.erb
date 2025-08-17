@@ -13,7 +13,9 @@
         <button style="margin-top: 20px" onclick='document.getElementById("dialog").showModal()'> Замовити </button>
       </div>
     </product>
-    <%= render partial: "products/faq" %>
+    <div class="faq-index-mobile">
+      <%= render partial: "products/faq" %>
+    </div>
     <dialog id="dialog">
       <h2 class="mb-4"> Форма оплати замовлення </h2>
       <%= form_with model: @purchase, url: purchases_path, method: :post, html: { style: "display: flex; flex-direction: column;" } do |f| %>

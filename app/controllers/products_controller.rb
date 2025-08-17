@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @product = Product.active.first
-    @purchase = @product.purchases.new
+    @purchase = @product&.purchases&.new
   end
 
   def show
