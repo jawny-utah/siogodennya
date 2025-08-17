@@ -175,3 +175,7 @@ container {
     transform: none;
   }
 }
+
+summary {
+  cursor: pointer;
+}
