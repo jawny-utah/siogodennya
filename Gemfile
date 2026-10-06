@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.3"
+ruby "3.4.8"
 
 gem "activeadmin"
 gem "aws-sdk-s3"
@@ -29,3 +29,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "mutex_m", "~> 0.3.0"
+
+gem "bigdecimal", "~> 4.1"
+
+gem "prometheus-client"

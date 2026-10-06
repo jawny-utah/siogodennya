@@ -1,0 +1,58 @@
+{
+  "title": "Products Created Today",
+  "uid": "products-created-today",
+  "timezone": "browser",
+  "time": { "from": "now/d", "to": "now" },
+  "refresh": "30s",
+  "schemaVersion": 39,
+  "panels": [
+    {
+      "id": 1,
+      "title": "Products Created Today",
+      "type": "stat",
+      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        {
+          "expr": "sum(increase(products_created_total{job=\"siogodennya\"}[$__range]))",
+          "legendFormat": "created today"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "thresholds": { "mode": "absolute", "steps": [{ "color": "blue", "value": null }] }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Products Created Over Time",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 16, "x": 8, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": { "defaults": { "unit": "none", "decimals": 0 } },
+      "targets": [
+        {
+          "expr": "increase(products_created_total{job=\"siogodennya\"}[30m])",
+          "legendFormat": "new products (30m window)"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Total Products Created (all time, since app start)",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 8, "x": 0, "y": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        {
+          "expr": "products_created_total{job=\"siogodennya\"}",
+          "legendFormat": "total"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "none", "decimals": 0 } }
+    }
+  ]
+}

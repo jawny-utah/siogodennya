@@ -4,6 +4,8 @@ class Product < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
+  after_create { PRODUCTS_CREATED_TOTAL.increment }
+
   def self.ransackable_attributes(auth_object = nil)
     ["active", "created_at", "description", "header", "id", "image_url", "price", "title", "updated_at"]
   end

@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Generates load against the local dev server to exercise the Grafana dashboards:
+# hits /load_test/spike (CPU-heavy) and /load_test/flaky (~50% 5xx) concurrently.
+#
+# Usage: bin/load_test [duration_seconds] [concurrency]
+set -euo pipefail
+
+HOST="${LOAD_TEST_HOST:-http://localhost:3000}"
+DURATION="${1:-30}"
+CONCURRENCY="${2:-8}"
+
+end_ts=$(( $(date +%s) + DURATION ))
+
+echo "Load testing ${HOST} for ${DURATION}s with concurrency=${CONCURRENCY}"
+echo "  /load_test/spike  - CPU-heavy, spikes process_cpu_seconds_total / RSS"
+echo "  /load_test/flaky  - fails ~50% of the time, spikes the 5xx error rate"
+echo
+
+worker() {
+  local idx="$1" ok=0 fail=0
+  while [ "$(date +%s)" -lt "$end_ts" ]; do
+    curl -s -o /dev/null "${HOST}/load_test/spike" || true
+    code=$(curl -s -o /dev/null -w "%{http_code}" "${HOST}/load_test/flaky" || echo "000")
+    if [ "$code" = "200" ]; then ok=$((ok + 1)); else fail=$((fail + 1)); fi
+  done
+  echo "worker ${idx}: ${ok} ok, ${fail} failed"
+}
+
+pids=()
+for i in $(seq 1 "$CONCURRENCY"); do
+  worker "$i" &
+  pids+=("$!")
+done
+
+for pid in "${pids[@]}"; do
+  wait "$pid"
+done
+
+echo
+echo "Done. Grafana: http://localhost:3001/d/siogodennya-overview"
